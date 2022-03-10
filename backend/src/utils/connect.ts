@@ -3,8 +3,9 @@ import config from 'config'
 import logger from './logger';
 
 
+
  const connect=async()=> {
-     const DATABASE_URL = config.get<string>("DATABASE_URL");
+     const DATABASE_URL = <string>process.env.DATABASE_URL;
     await mongoose.connect(DATABASE_URL).then(() => { logger.info('Connected') }).catch((err) => {
         logger.error('Could not connect to database');
         process.exit(1)

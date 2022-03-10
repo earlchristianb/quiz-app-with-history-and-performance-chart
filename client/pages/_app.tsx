@@ -1,4 +1,5 @@
 import { AppProps } from "next/dist/shared/lib/router/router"
+import "@material-tailwind/react/tailwind.css";
 import '../styles/globals.css';
 import { Provider } from 'react-redux'
 import store from '../components/store'

@@ -18,11 +18,14 @@ export const updateUserName = async (req:Request,res:Response) => {
         const updatedUserName = await User.findByIdAndUpdate(_id, updatedName, { new: true })
         
         if (updatedUserName) {
-            const update = {
-                userName: updatedUserName.userName,
-                _id:updatedUserName._id
-            }
-            return res.json({result:update,message:"Update Successful",success:true})
+            
+            return res.json({
+                userDetails: {
+                 email:updatedUserName.email,
+                _id: updatedUserName._id,
+                image: updatedUserName.image,
+                userName:updatedUserName.userName,
+            },message:"Update Successful",success:true})
         }
     } catch (error) { 
     
@@ -50,21 +53,24 @@ export const updateProfilePicture = async (req:Request,res:Response) => {
 
         console.log(uploadedResponse);
         const imageLinkUpdated = uploadedResponse.url;
-        const updatedPicture: UserDTO | null = await User.findById(id);
-        if (!updatedPicture?.image) {
-             
-            const updatedUser = {
+        const updatedUser = {
                 image:imageLinkUpdated
             }
             const result = await User.findByIdAndUpdate(id, updatedUser, { new: true })
-            return res.json({ result: result.image , message: "Picture updated", success: true }).status(201);
+        return res.json({
+            userDetails: {
+                email: result.email,
+                _id: result._id,
+                image: result.image,
+                userName: result.userName,
+            } , message: "Picture updated", success: true }).status(201);
             
-        }
-        return res.json({ result:imageLinkUpdated, message: "Picture updated", success: true }).status(200);
-
+        
+         
+        
     
     } catch (error) {
-        console.log(error)
+        return res.json({ message: error, success: false });
     }
 
     

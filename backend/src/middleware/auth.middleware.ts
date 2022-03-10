@@ -1,6 +1,7 @@
 import { NextFunction , Request,Response} from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import config from 'config'
+
+import User from '../models/user.model';
 
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
@@ -15,10 +16,13 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
                 {
 
                     
-                    const payload : string| JwtPayload = jwt.verify(token, config.get("JWT_SECRET"));
+                    const payload : string| JwtPayload = jwt.verify(token,<string>process.env.JWT_SECRET);
                    
                     req.signedCookies = payload;
-                    next();                 
+                    const existingUser = await User.findById(req.signedCookies.id);
+                    if (existingUser) next();
+                    else return res.json({ message: "Unauthorized" }).status(400);
+                                     
                 } 
                 
             }

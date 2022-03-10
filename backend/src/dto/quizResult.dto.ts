@@ -8,7 +8,6 @@ export type QuizItems = {
 export type QuizResult = {
     userId: string,
     category: string,
-    type: string,
     score: number,
     quiz: QuizItems[]
     _id: string,

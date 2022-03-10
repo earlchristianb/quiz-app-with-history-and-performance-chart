@@ -24,11 +24,13 @@ export const addQuizResult = async (req: Request, res: Response) => {
         userId: userId,
         category: req.body.category,
         difficulty: req.body.difficulty,
-        quiz: req.body.quiz
+        score:req.body.score,
+        items: req.body.items
         });
         
         //saving the quiz result object to DB
-        const result:QuizResult = await quizResult.save();
+        const result: QuizResult = await quizResult.save();
+        console.log(result);
         if (result) return res.json({ result, message: "Quiz Result added", success: true });
         else return res.json({ message: "Quiz result adding Unsuccesful", success: true });
 
@@ -53,4 +55,22 @@ export const getUserQuizResults = async (req: Request, res: Response) => {
         console.log(error)
     }
  
+}
+
+export const getSpecificQuizResult = async (req: Request, res: Response) => {
+    
+    const userId = req.signedCookies.id;
+    const { id: quizId } = req.params;
+    try {
+        
+        const result: QuizResult|null = await Quiz.findById(quizId);
+        if (result && result?.userId===userId) {
+            return res.json({ result, message: "Retrieve Successfully", success: true });
+        } else {
+            return res.json({ message: "Quiz not found", success: false });
+        }
+    } catch (error) {
+        console.log(error)
+        return({message:"Not found", success:false})
+    }
 }

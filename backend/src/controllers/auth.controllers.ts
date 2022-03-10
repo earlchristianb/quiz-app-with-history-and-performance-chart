@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { signinDTO, signupDTO, UserDTO } from "../dto";
 import User from "../models/user.model";
 import jwt from "jsonwebtoken";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import config from 'config';
 import log from "../utils/logger";
 
@@ -84,6 +84,6 @@ export const signin = async (req: Request, res: Response) => {
 
 
 export const signToken=async(email:string, id:string)=>{
-    const token: string = jwt.sign({ email: email, id:id }, config.get<string>('JWT_SECRET'), { expiresIn: "30m" });
+    const token: string = jwt.sign({ email: email, id:id }, <string>process.env.JWT_SECRET, { expiresIn: "30m" });
     return token;
 }

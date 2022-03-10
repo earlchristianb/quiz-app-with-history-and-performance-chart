@@ -2,14 +2,22 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "app.js",
 	"scripts": {
-		"dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+		"start": "node dist/app.js",
+		"postinstall": "tsc",
+		"watch-node": "nodemon dist/app.js",
+		"build": "tsc",
+		"deploy": "git add . && git commit -m Heroku && git push heroku master"
+	},
+	"engines": {
+		"node": "v16.14.0",
+		"npm": "7.20.3"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"bcrypt": "^5.0.1",
+		"bcryptjs": "^2.4.3",
 		"cloudinary": "^1.28.1",
 		"config": "^3.3.7",
 		"cors": "^2.8.5",
@@ -25,6 +33,7 @@
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.0",
+		"@types/bcryptjs": "^2.4.2",
 		"@types/body-parser": "^1.19.2",
 		"@types/config": "^0.0.41",
 		"@types/cors": "^2.8.12",

@@ -21,7 +21,8 @@ export type QuizResult={
     category: string|null,
     difficulty: string|null,
     quiz: Answered[]|[],
-    userId:string|null,
+    userId?: string | null,
+    createdAt?:Date
 }
 
 export type Answered={
