@@ -5,9 +5,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import ResultsTable from "../../components/functionalComponents/ResultsTable";
 import Image from "next/image";
 import BlankBg from "../../public/BlankBg.png";
-
 import React, { useEffect, useRef, useState } from "react";
-import defaultImage from "../../components/defaultImage";
 import { authActions, updatePicture } from "../../components/store/auth-slice";
 import { useRouter } from "next/router";
 import { LineChart } from "../../components/functionalComponents/LineChart";
@@ -183,7 +181,7 @@ const ProfilePage: NextPage = () => {
 							/>
 						) : (
 							<Image
-								src={selectedFile ? selectedFile : defaultImage}
+								src={selectedFile ? selectedFile.toString() : "https://i.stack.imgur.com/l60Hf.png"}
 								alt='user image'
 								layout='fill'
 								className='
