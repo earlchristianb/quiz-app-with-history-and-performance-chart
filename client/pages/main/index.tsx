@@ -17,7 +17,7 @@ const Main: NextPage = () => {
 	const user = useSelector((state: RootStateOrAny) => state.auth.user);
 	useEffect(() => {
 		if (!user) router.push("/login");
-	});
+	},[user]);
 	useEffect(() => {
 		if (user) dispatch(getQuizCollection());
 	}, [user]);

@@ -4,9 +4,8 @@ import { NextPage } from "next";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import ResultsTable from "../../components/functionalComponents/ResultsTable";
 import Image from "next/image";
-import BlankBg from "../../public/BlankBg.png";
-import React, { useEffect, useRef, useState } from "react";
-import { authActions, updatePicture } from "../../components/store/auth-slice";
+import React, { useEffect, useState } from "react";
+import {  updatePicture } from "../../components/store/auth-slice";
 import { useRouter } from "next/router";
 import { LineChart } from "../../components/functionalComponents/LineChart";
 import {DoughnutChart} from "../../components/functionalComponents/Doughnut";
@@ -77,7 +76,7 @@ const ProfilePage: NextPage = () => {
 			setScoreArray(scores);
 			setLabelArray(label);
 			
-	}, [user]);
+	}, [recentQuizzes]);
 
 	const openFileSelector = () => {
 		const fileSelectElement = document.getElementById("fileSelector");
