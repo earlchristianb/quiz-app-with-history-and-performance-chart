@@ -208,12 +208,12 @@ const ProfilePage: NextPage = () => {
 						<p className='text-lg font-normal text-slate-700 text-left '>
 							Username:
 						</p>
-						<p className='bg-white rounded-lg shadow-lg p-2'>{user.userName}</p>
+						<p className='bg-white rounded-lg shadow-lg p-2'>{user?.userName}</p>
 						<p className='text-lg font-normal text-slate-700 text-left '>
 							Email:
 						</p>
 						<p className='italic font-normal text-blue-600 bg-white rounded-lg shadow-lg p-2 '>
-							{user.email}
+							{user?.email}
 						</p>
 					</div>
 				</div>
