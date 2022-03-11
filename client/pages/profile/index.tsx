@@ -172,6 +172,7 @@ const ProfilePage: NextPage = () => {
 						{/*PROFILE PICTURE*/}
 						{user?.image ? (
 							<Image
+								blurDataURL="https://i.stack.imgur.com/l60Hf.png"
 								src={selectedFile ? selectedFile : user?.image}
 								alt='user image'
 								layout='fill'
@@ -180,6 +181,7 @@ const ProfilePage: NextPage = () => {
 							/>
 						) : (
 							<Image
+								blurDataURL="https://i.stack.imgur.com/l60Hf.png"
 								src={selectedFile ? selectedFile.toString() : "https://i.stack.imgur.com/l60Hf.png"}
 								alt='user image'
 								layout='fill'
