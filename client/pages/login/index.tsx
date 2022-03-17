@@ -138,13 +138,12 @@ const Login: NextPage = () => {
 							? "Already have an account?"
 							: " New here ? Create an Account"}
 					</button>
-					<div className="">
-					For Testing Purposes use this credentials
-					<p>Email:loki@gmail.com</p>
-					<p>Password:Lokii</p>
-				</div>
+					<div className=''>
+						For Testing Purposes use this credentials
+						<p>Email:loki@gmail.com</p>
+						<p>Password:lokii</p>
+					</div>
 				</form>
-				
 			</div>
 		</section>
 	);
